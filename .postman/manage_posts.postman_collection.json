@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/posts",
+					"raw": "http://localhost:8000/api/posts?page=1&perPage=2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -21,6 +21,16 @@
 					"path": [
 						"api",
 						"posts"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "perPage",
+							"value": "2"
+						}
 					]
 				}
 			},

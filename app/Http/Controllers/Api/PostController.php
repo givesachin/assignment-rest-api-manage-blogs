@@ -10,9 +10,15 @@ use App\Http\Controllers\Controller;
 class PostController extends Controller
 {
     // List all posts
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::paginate(10);
+        $perPage = 10;
+
+        if($request->has('perPage')) {
+            $perPage = $request->get('perPage');
+        }
+
+        $posts = Post::paginate($perPage);
         return PostResource::collection($posts);
     }
 
