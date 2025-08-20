@@ -21,7 +21,7 @@ class BlogResource extends JsonResource
             'created_at' => $this->created_at->toDateTimeString(),
             'updated_at' => $this->updated_at->toDateTimeString(),
             
-            'posts' => new PostResource($this->whenLoaded('posts')),
+            'posts' => PostResource::collection($this->whenLoaded('posts')),
         ];
     }
 }

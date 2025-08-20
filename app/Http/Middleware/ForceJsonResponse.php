@@ -14,7 +14,7 @@ class ForceJsonResponse
      * @var array
      */
     protected $except = [
-        // 'api/*',
+        'api/*',
     ];
 
     /**
@@ -26,12 +26,26 @@ class ForceJsonResponse
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->expectsJson() || $request->isJson() || $request->wantsJson()) {
+        $flag = false;
+        $path = $request->path();
+
+        foreach ($this->except as $except) {
+            $except = trim($except, '*');
+            if (str_contains($path, $except)) {
+                $flag = true;
+            }
+        }
+        
+        if ($flag) {
+            if (($request->expectsJson() || $request->isJson()) && $request->wantsJson()) {
+                return $next($request);
+            }
+
+            return response()->json([
+                'error' => 'Only application/json requests are accepted'
+            ], 406);
+        } else {
             return $next($request);
         }
-
-        return response()->json([
-            'error' => 'Only application/json requests are accepted'
-        ], 406); // 406 Not Acceptable
     }
 }

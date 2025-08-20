@@ -23,7 +23,7 @@ class BlogController extends Controller
         }
 
         $blogs = $query->paginate($perPage);
-        return BlogResource::collection($blogs);
+        return BlogResource::collection($blogs->load('posts'));
     }
 
     /**
@@ -53,14 +53,14 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        return new BlogResource($blog);
+        return new BlogResource($blog->load('posts'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Blog $blog)
-    {        
+    {
         $request->validate([
             'name' => 'sometimes|required|string|max:255',
             'description' => 'required|string',
