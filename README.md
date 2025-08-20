@@ -1,5 +1,7 @@
 # assignment-rest-api-manage-blogs
 
+https://github.com/givesachin/assignment-rest-api-manage-blogs
+
 Create a REST API for managing blog posts with endpoints for listing, creating, updating, and deleting posts. Use API Resource for response formatting.
 
 ---
@@ -61,7 +63,7 @@ php artisan route:list
 
 ## CI/CD temporary domain
 
-https://cornflowerblue-stingray-365252.hostingersite.com
+https://manageblogposts.vardaneducationandtrust.in/
 
 ---
 

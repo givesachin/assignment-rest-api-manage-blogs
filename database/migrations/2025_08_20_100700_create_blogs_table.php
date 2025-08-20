@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
+            $table->foreignId('author_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::table('posts', function (Blueprint $table) {
-            $table->foreignId('blog_id')->constrained()->onDelete('cascade');
+            $table->foreignId('blog_id')->constrained('blogs')->onDelete('cascade');
         });
     }
 
