@@ -26,7 +26,7 @@ class PostController extends Controller
         }
 
         $posts = $query->paginate($perPage);
-        return PostResource::collection($posts);
+        return PostResource::collection($posts->load('blog'));
     }
 
     // Store a new post
@@ -43,9 +43,9 @@ class PostController extends Controller
                 'success' => false,
                 'errors'  => $validator->errors(),
             ], 422);
-}
+        }
 
-        $post = Post::create($request->only('title', 'content'));
+        $post = Post::create($request->only('title', 'content', 'blog_id'));
 
         return new PostResource($post);
     }
@@ -53,7 +53,7 @@ class PostController extends Controller
     // Show a single post
     public function show(Post $post)
     {
-        return new PostResource($post);
+        return new PostResource($post->load('blog'));
     }
 
     // Update a post
@@ -61,12 +61,13 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'sometimes|required|string|max:255',
-            'content' => 'sometimes|required|string',
+            'content' => 'required|string',
+            'blog_id' => 'required|exists:blogs,id',
         ]);
 
-        $post->update($request->only('title', 'content'));
+        $post->update($request->only('title', 'content', 'blog_id'));
 
-        return new PostResource($post);
+        return new PostResource($post->load('blog'));
     }
 
     // Delete a post
