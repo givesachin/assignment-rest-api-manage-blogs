@@ -31,3 +31,7 @@ Let's migrate the tables
 
 php artisan migrate
 
+check post api resources are created,
+
+php artisan route:list
+
