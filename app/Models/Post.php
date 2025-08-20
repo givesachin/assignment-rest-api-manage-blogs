@@ -9,6 +9,10 @@ class Post extends Model
     protected $table = 'posts';
     protected $fillable = ['title', 'content'];
 
-    
+    // Each post belongs to one blog
+    public function blog()
+    {
+        return $this->belongsTo(Blog::class);
+    }
 
 }
