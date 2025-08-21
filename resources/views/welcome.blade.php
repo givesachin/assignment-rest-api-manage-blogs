@@ -91,7 +91,7 @@
                             <span>
                                 Watch the code
                                 <a href="https://github.com/givesachin/assignment-rest-api-manage-blogs" target="_blank" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-1">
-                                    <span>Laracasts</span>
+                                    <span>Github</span>
                                     <svg
                                         width="10"
                                         height="11"
